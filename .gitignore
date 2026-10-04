@@ -17,6 +17,10 @@ env/
 outputs/
 *.log
 
+# User-supplied research imagery (scoped to data/, including nested folders)
+/data/**/*.[tT][iI][fF]
+/data/**/*.[tT][iI][fF][fF]
+
 # OS-specific
 .DS_Store
 Thumbs.db
