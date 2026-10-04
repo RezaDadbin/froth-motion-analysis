@@ -6,7 +6,7 @@ Froth Motion and Stability Analysis is a Python pipeline for estimating motion a
 
 This repository forms part of broader froth-image analysis research. Experimental work completed; a data-paper manuscript is currently in preparation.
 
-The complete research dataset is not distributed with this repository. Two example frames are currently included under `data/`; they are not the full experimental dataset. Code is provided for research and reproducibility with compatible, independently supplied data. Exact reproduction of the private experiments also requires their data, splits, configuration, and checkpoints.
+The research imagery is not distributed with this repository. Users should provide their own authorized consecutive froth frames. Code is provided for research and reproducibility with compatible, independently supplied data. Exact reproduction of the private experiments also requires their data, splits, configuration, and checkpoints.
 
 ## Authors
 
@@ -29,12 +29,14 @@ froth-motion-analysis/
 │   ├── phase_correlation_registration.py
 │   └── froth_motion_and_stability.py
 ├── data/
-│   ├── image1.tiff
-│   └── image2.tiff
+│   └── input/
+│       ├── .gitkeep
+│       ├── frame1.tiff   # User-supplied frame; gitignored
+│       └── frame2.tiff   # User-supplied consecutive frame; gitignored
 └── outputs/        # Generated figures and CSVs (gitignored)
 ```
 
-- `data/` contains example froth frames for experimentation.
+- `data/input/` is the expected location for your own authorized consecutive froth frames. Only the directory placeholder is tracked; TIFF/TIF images anywhere under `data/` are ignored by Git.
 - `outputs/` is used by the scripts to store generated visualizations and CSV files.
 
 ## Installation
@@ -68,7 +70,7 @@ Estimate global translation between two grayscale froth images via a coarse-to-f
 **Example:**
 
 ```bash
-python src/phase_correlation_registration.py data/image1.tiff data/image2.tiff \
+python src/phase_correlation_registration.py data/input/frame1.tiff data/input/frame2.tiff \
     --out-dir outputs/phase_correlation
 ```
 
@@ -97,7 +99,7 @@ Compute dense local motion vectors and tile-wise stability metrics by fusing opt
 **Example:**
 
 ```bash
-python src/froth_motion_and_stability.py data/image1.tiff data/image2.tiff \
+python src/froth_motion_and_stability.py data/input/frame1.tiff data/input/frame2.tiff \
     --out-dir outputs/froth_motion --dt 1.5
 ```
 
