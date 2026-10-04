@@ -2,6 +2,12 @@
 
 Froth Motion and Stability Analysis is a Python pipeline for estimating motion and stability of flotation froth between consecutive frames. The project combines multiscale phase correlation, optical flow, and block matching to deliver global translation estimates, dense local motion fields, and tile-wise stability metrics.
 
+## Research Status and Data Availability
+
+This repository forms part of broader froth-image analysis research. Experimental work completed; a data-paper manuscript is currently in preparation.
+
+The complete research dataset is not distributed with this repository. Two example frames are currently included under `data/`; they are not the full experimental dataset. Code is provided for research and reproducibility with compatible, independently supplied data. Exact reproduction of the private experiments also requires their data, splits, configuration, and checkpoints.
+
 ## Authors
 
 - Sina Lotfi
@@ -19,7 +25,6 @@ Froth Motion and Stability Analysis is a Python pipeline for estimating motion a
 ```
 froth-motion-analysis/
 ├── README.md
-├── requirements.txt
 ├── src/
 │   ├── phase_correlation_registration.py
 │   └── froth_motion_and_stability.py
@@ -34,12 +39,16 @@ froth-motion-analysis/
 
 ## Installation
 
-1. (Optional) Create and activate a Python 3 virtual environment.
-2. Install dependencies from the project root:
+Create a Python 3 virtual environment and install the dependencies used by the scripts:
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install numpy opencv-python matplotlib
+```
+
+On Windows, activate with `.venv\Scripts\activate`. There is no `requirements.txt` in the current source tree; record installed versions when reproducing a run.
 
 The project primarily relies on:
 
@@ -121,3 +130,7 @@ Use the overlays and CSV outputs to locate areas of interest on the froth surfac
 
 Key parameters such as tile sizing, motion thresholds, pyramid levels, and optical flow window sizes are defined near the top of `froth_motion_and_stability.py`. Adjust them to match image resolution, froth texture, and process conditions.
 
+
+## Reproducibility and Scope
+
+Record the input frame pair, acquisition interval, parameter settings, dependency versions, and repository commit. Use imagery you are authorized to process and redistribute. Motion and stability outputs depend on texture, imaging conditions, and parameter choices; this README does not claim validated production performance.
